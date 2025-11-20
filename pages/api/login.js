@@ -30,7 +30,7 @@ async function dbConnect() {
 async function seedDB() {
   const exists = await User.findOne({ username: 'admin' })
   if (!exists) {
-    await new User({ username: 'admin', secret_flag: 'CTF{N0SQL_1nj3ct10n_1s_Fun}' }).save()
+    await new User({ username: 'admin', secret_flag: 'BNCTF{N0SQL_1nj3ct10n_1s_Fun}' }).save()
   }
 }
 

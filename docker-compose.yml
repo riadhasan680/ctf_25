@@ -3,11 +3,27 @@ services:
   mongo:
     image: mongo:6
     container_name: mongo
+    restart: always
     ports:
       - "27017:27017"
     environment:
       - MONGO_INITDB_DATABASE=ctfdb
     volumes:
       - mongo_data:/data/db
+
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: ctf_app
+    restart: always
+    ports:
+      - "1339:3000"
+    environment:
+      - MONGODB_URI=mongodb://mongo:27017/ctfdb
+      - NODE_ENV=production
+    depends_on:
+      - mongo
+
 volumes:
   mongo_data:
